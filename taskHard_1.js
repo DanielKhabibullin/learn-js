@@ -1,3 +1,5 @@
+'use strict';
+
 const income = +prompt('Enter your income in rubles')?.trim();
 
 if (income >= 50000) {

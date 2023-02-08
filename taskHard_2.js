@@ -1,3 +1,5 @@
+'use strict';
+
 const income = +prompt('Enter your income in rubles')?.trim();
 if (income >= 50000) {
 	let taxes = 15000 * .13 + 35000 * .2 + (income - 50000) * .3;
