@@ -27,23 +27,19 @@
 {
 	const productName = prompt('Enter product name')?.trim();
 	const productCount = +prompt('Enter product qty')?.trim();
-	if (isNaN(productCount)) {
-		alert('Please, enter correct data');
-	}
 	const productCategory = prompt('Enter product category')?.trim();
 	const productPrice = +prompt('Enter product price, rub')?.trim();
-	if (isNaN(productPrice)) {
-		alert('Please, enter correct data');
-	}
 
 	const sumTotal = productCount * productPrice;
 
-	if (productCount > 1) {
-		console.log(`"There are ${productCount} units of "${productName}" worth ${sumTotal} rubles in stock"`);
-	} 
-	if (productCount == 1) {
-		console.log(`"There is 1 unit of "${productName}" worth ${productCount} rubles in stock"`);
-	};
+	if (isNaN(productCount) || isNaN(productPrice)) {
+		alert('Please, enter correct data');
+		} else if (productCount > 1) {
+			console.log(`"There are ${productCount} units of "${productName}" worth ${sumTotal} rubles in stock"`);
+		} 
+		if (productCount == 1) {
+			console.log(`"There is 1 unit of "${productName}" worth ${productCount} rubles in stock"`);
+		};
 	if (productCount < 1) {
 		console.log('Something gone wrong');
 	};
