@@ -1,7 +1,7 @@
 'use strict';
 
 const euro = +prompt('Enter purchase price, euro')?.trim();
-if (Number.isNaN(parseFloat(euro)) || euro < 0) {
+if (Number.isNaN(parseFloat(euro)) || euro < 0 || euro == Infinity) {
 	alert('Please, enter correct data');
 }
 const convertEuro = (euro) => {
@@ -13,5 +13,5 @@ const convertEuro = (euro) => {
 
 }
 
-const result = convertEuro(euro);
-console.log('result: ', result);
+const result1 = convertEuro(euro);
+console.log('result: ', result1);

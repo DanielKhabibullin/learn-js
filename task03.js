@@ -2,7 +2,7 @@
 
 const string3 = prompt('Enter some sentense')?.trim();
 const stringReverse = (string3) => {
-	if (string3 != '' && typeof str !== 'undefined') {
+	if (string3 != '' || typeof str !== 'undefined') {
 		let i = 0;
 		let result = '';
 		while (i < string3.length) {

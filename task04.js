@@ -25,5 +25,5 @@ const calculate = (cartTotalPrice, cartProductCount, promocode) => {
 	return totalPrice;
 };
 
-const result = calculate(cartTotalPrice, cartProductCount, promocode);
-console.log('result: ', result);
+const result4 = calculate(cartTotalPrice, cartProductCount, promocode);
+console.log('result: ', result4);
