@@ -1,14 +1,14 @@
 'use strict';
 
-const cartTotalPrice = 50000;//+prompt('Enter cart total price')?.trim();
+const cartTotalPrice = +prompt('Enter cart total price')?.trim();
 if (Number.isNaN(parseFloat(cartTotalPrice))) {
 	alert('Please, enter correct data');
 }
-const cartProductCount = 10;//+prompt('Enter amount of products in the cart')?.trim();
+const cartProductCount = +prompt('Enter amount of products in the cart')?.trim();
 if (Number.isNaN(parseFloat(cartProductCount))) {
 	alert('Please, enter correct data');
 }
-const promocode = 'METHED';//prompt('Enter promocode here')?.trim().toUpperCase();
+const promocode = prompt('Enter promocode here')?.trim().toUpperCase();
 
 const calculate = (cartTotalPrice, cartProductCount, promocode) => {
 	let totalPrice = cartTotalPrice;
