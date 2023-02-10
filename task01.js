@@ -1,17 +1,34 @@
 'use strict';
 
-const euro = +prompt('Enter purchase price, euro')?.trim();
-if (Number.isNaN(parseFloat(euro)) || euro < 0 || euro == Infinity) {
-	alert('Please, enter correct data');
-}
-const convertEuro = (euro) => {
+const allStudents = ['Ivanov', 'Petrov', 'Sidorov', 'Kuznetsov', 'Smirnov', 'Popov', 'Sokolov']
+const failedStudents = ['Sidorov', 'Smirnov', 'Popov']
 
-		let dollarsPerEuro = euro * 1.2;
-		let rublesPerEuro = dollarsPerEuro * 73;
-		//console.log(`Purchase total price: ${rublesPerEuro} rub`);
-		return `Purchase total price: ${rublesPerEuro} rub`;
+const filter1 = (arrA, arrB) => arrA
+.filter(el_A => !arrB.includes(el_A));
 
-}
+console.log(filter1(allStudents, failedStudents));
 
-const result1 = convertEuro(euro);
-console.log('result: ', result1);
+const filter = (arr1, arr2) => {
+	const result = [];
+	for (let i = 0; i < arr1.length; i++) {
+		if (!(arr2.includes(arr1[i]))) {
+			result.push(arr1[i])
+		}
+	}
+	return result;
+};
+console.log('filter: ', filter(allStudents, failedStudents));
+
+// ?? filter2 doesn't work
+const filter2 = (arr1, arr2) => {
+	const result = [];
+	for (let i = 0; i < arr1.length; i++) {
+		for (let j = 0; j < arr2.length; j++) {
+			if (arr1[i] !== arr2[j]) {
+				result.push(arr1[i]);
+			}
+		}
+	}
+	return result;
+};
+console.log('filter2: ', filter2(allStudents, failedStudents));

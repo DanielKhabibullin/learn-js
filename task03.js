@@ -1,19 +1,16 @@
 'use strict';
+const names= ['Noah', 'Liam', 'Mason', 'Jacob', 'Robot', 'William', 'Ethan', 'Michael', 'Alexander'];
 
-const string3 = prompt('Enter some sentense')?.trim();
-const stringReverse = (string3) => {
-	if (string3 != '' || typeof str !== 'undefined') {
-		let i = 0;
-		let result = '';
-		while (i < string3.length) {
-			result = `${string3[i]}${result}`;
-			i += 1;
+const addPrefix = (arr, prefix) => {
+	
+	let newArr = [];
+	for (const elem in arr) {
+			newArr[elem] = `${prefix} ${arr[elem]}`;
 		}
-		return result;
-	} else {
-		alert('Please, enter correct data');
-	}
-};
+		// for (let i = 0; i < arr.length; i += 1) {
+		// 	newArr[i] = `${prefix} ${arr[i]}`;
+		// }
+	return newArr;
+}
 
-const newString3 = stringReverse(string3);
-console.log('result: ', newString3);
+console.log('addPrefix: ', addPrefix(names, 'Mr'));
