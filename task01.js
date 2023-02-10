@@ -1,7 +1,7 @@
 'use strict';
 
-const allStudents = ['Ivanov', 'Petrov', 'Sidorov', 'Kuznetsov', 'Smirnov', 'Popov', 'Sokolov']
-const failedStudents = ['Sidorov', 'Smirnov', 'Popov']
+const allStudents = ['Ivanov', 'Petrov', 'Sidorov', 'Kuznetsov', 'Smirnov', 'Popov', 'Sokolov'];
+const failedStudents = ['Sidorov', 'Smirnov', 'Popov'];
 
 const filter1 = (arrA, arrB) => arrA
 .filter(el_A => !arrB.includes(el_A));

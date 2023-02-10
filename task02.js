@@ -10,7 +10,7 @@ const getAverageValue1 = (arr) => {
 	for (const elem in arr) {
 		sum += arr[elem];
 	}
-	return sum / arr.length;
+	return Math.floor(sum / arr.length);
 };
 
 getAverageValue1(allCashbox);
