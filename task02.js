@@ -16,8 +16,8 @@ const getAverageValue1 = (arr) => {
 getAverageValue1(allCashbox);
 console.log('getAverageValue: ', getAverageValue1(allCashbox));
 
-const getAverageValue2 = (arr) => arr
-.reduce((a, b) => (a + b)) / arr.length;
+const getAverageValue2 = (arr) => Math.floor(arr
+.reduce((a, b) => (a + b)) / arr.length);
 
 getAverageValue2(allCashbox);
 console.log('getAverageValue: ', getAverageValue2(allCashbox));
