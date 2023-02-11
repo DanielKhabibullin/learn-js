@@ -1,23 +1,22 @@
 'use strict';
 
-const allCashbox = [4500, 3210, 650, 1250, 7830, 990, 13900, 370];
-
-const getAverageValue1 = (arr) => {
-	let sum = 0;
-	// for (let i = 0; i < arr.length; i += 1) {
-	// 	sum += arr[i];
-	// }
-	for (const elem in arr) {
-		sum += arr[elem];
-	}
-	return Math.floor(sum / arr.length);
+function getRandomIntInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+	let number = 0;
+  number = Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
+	return number;
 };
 
-getAverageValue1(allCashbox);
-console.log('getAverageValue: ', getAverageValue1(allCashbox));
-
-const getAverageValue2 = (arr) => Math.floor(arr
-.reduce((a, b) => (a + b)) / arr.length);
-
-getAverageValue2(allCashbox);
-console.log('getAverageValue: ', getAverageValue2(allCashbox));
+const generateArr = (a, n, m) => {
+	let result = [];
+	for (let i = 0; i < a; i++ ) {
+		if (n > m) {
+			result[i] = getRandomIntInclusive(m, n);
+		} else {
+			result[i] = getRandomIntInclusive(n, m);
+		}
+	}
+	return result;
+};
+console.log(generateArr(20, -10, 10));
