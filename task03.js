@@ -1,22 +1,20 @@
-'use strict';
 
 function getRandomIntInclusive(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
-	let number = 0;
-  number = Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
-	return number;
-}
+	let number3 = 0;
+  number3 = Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
+	return number3;
+};
 
-const generateArr = (a, n, m) => {
-	let result = [];
+const generateArr3 = (a, m, n, even) => {
+	let result3 = [];
+	if (n < m) {
+		return generateArr3(a, n, m);
+	} 
 	for (let i = 0; i < a; i++ ) {
-		if (n > m) {
-			result[i] = getRandomIntInclusive(m, n);
-		} else {
-			result[i] = getRandomIntInclusive(n, m);
-		}
+			result3[i] = getRandomIntInclusive(m, n);
 	}
-	return result;
+	return result3;
 }
-console.log(generateArr(20, -10, 10));
+console.log(generateArr3(20, 100, -10, 'even'));

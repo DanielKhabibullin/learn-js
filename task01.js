@@ -1,10 +1,10 @@
 'use strict';
 
-const generateArr = (a) => {
-	let result = [];
+const generateArr1 = (a) => {
+	let result1 = [];
 	for (let i = 0; i < a; i++ ) {
-		result[i] = Math.round(Math.random() * 100);
+		result1[i] = Math.round(Math.random() * 100);
 	};
-	return result;
+	return result1;
 }
-console.log(generateArr(100));
+console.log(generateArr1(100));
