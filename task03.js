@@ -15,11 +15,11 @@ const generateArr3 = (a, m, n, str) => {
 	for (let i = 0; i < a; i++ ) {
 		let randomNum = getRandomIntInclusive(m, n);
 		if (str === 'even') { 
-			while (!(randomNum % 2)) {
+			while (randomNum % 2 !== 0) {
 				randomNum = getRandomIntInclusive(m, n);
 			}
 		} else if (str === 'odd') {
-			while (randomNum % 2) {
+			while (randomNum % 2 !== 0) {
 				randomNum = getRandomIntInclusive(m, n);
 			}
 		}
@@ -27,4 +27,4 @@ const generateArr3 = (a, m, n, str) => {
 	}
 	return result3;
 };
-console.log(generateArr3(20, 100, -10, 'odd'));
+console.log(generateArr3(20, 100, -10, 'even'));
