@@ -7,14 +7,24 @@ function getRandomIntInclusive(min, max) {
 	return number3;
 };
 
-const generateArr3 = (a, m, n, even) => {
+const generateArr3 = (a, m, n, str) => {
 	let result3 = [];
 	if (n < m) {
-		return generateArr3(a, n, m);
-	} 
+		return generateArr3(a, n, m, str);
+	}
 	for (let i = 0; i < a; i++ ) {
-			result3[i] = getRandomIntInclusive(m, n);
+		let randomNum;
+		if (str === 'even') { 
+			while (!(randomNum % 2)) {
+				randomNum = getRandomIntInclusive(m, n);
+			}
+		} else if (str === 'odd') {
+			while (randomNum % 2) {
+				randomNum = getRandomIntInclusive(m, n);
+			}
+		}
+		result3.push(randomNum);
 	}
 	return result3;
-}
+};
 console.log(generateArr3(20, 100, -10, 'even'));

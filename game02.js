@@ -27,9 +27,9 @@ console.log('tryAmount: ', tryAmount);
 
 		let userNumber = prompt(`Let's play the Game. Find random number from ${start} to ${end} inclusive both`);
 		
-		if (isNaN(parseInt(userNumber))) {
+		if (isNaN(userNumber)) {
 			alert('Please, enter correct number');
-			break;
+			continue;
 		}
 		if (userNumber === null) {
 			console.log('userNumber: ', userNumber);
@@ -47,9 +47,8 @@ console.log('tryAmount: ', tryAmount);
 			alert('More!');
 			answerArr.push(userNumber);
 			console.log('answerArr: ', answerArr);
-		} else if (tryAmount > answerArr.length) {
-			alert('More!');
-
+		} else if (answerArr.length >= tryAmount) {
+			alert('Tries are over');
 			break;
 		}
 	}
