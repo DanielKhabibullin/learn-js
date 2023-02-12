@@ -12,29 +12,37 @@ function getRandomIntInclusive(min, max) {
 
 const startGame = () => {
 
-// бот отграничивает количество попыток до 30% от количества цифр в диапазоне
-// если пользователь повторно ввел число, которое вводил ранее, то бот выводит "Это число вы уже вводили" попытка не засчитывается
-// если диапазон от 50 до 100, то попыток бот даёт 15
-// если попытки закончились игра прекращается
-let start = prompt('Enter first number ');
-let end = prompt('Enter second number ');
-let number = getRandomIntInclusive(start, end);
-console.log('number: ', number);
-let answerArr = [];
-let tryAmount = Math.floor((end - start + 1) * 0.3);
-console.log('tryAmount: ', tryAmount);
+	let start = prompt('Enter first number ');
+	let end = prompt('Enter second number ');
+	let number = getRandomIntInclusive(start, end);
+	console.log('number: ', number);
+	let answerArr = [];
+	let tryAmount = Math.floor((end - start + 1) * 0.3);
+	console.log('tryAmount: ', tryAmount);
 	while (true) {
 
 		let userNumber = prompt(`Let's play the Game. Find random number from ${start} to ${end} inclusive both`);
 		
 		if (isNaN(userNumber)) {
-			alert('Please, enter correct number');
+			alert('Please, enter correct number!');
 			continue;
 		}
 		if (userNumber === null) {
 			console.log('userNumber: ', userNumber);
-			alert ('Come back again');
+			alert ('Come back again!');
 			break;
+		}
+		if (start === 50 && end === 100) {
+			tryAmount = 15;
+			continue;
+		}
+		if (answerArr.length >= tryAmount) {
+			alert('Tries are over');
+			break;
+		}
+		if (answerArr.includes(userNumber)) {
+			alert('You entered this number already');
+			continue;
 		}
 		if (parseInt(userNumber) === number) {
 			alert('Good job');
@@ -47,10 +55,8 @@ console.log('tryAmount: ', tryAmount);
 			alert('More!');
 			answerArr.push(userNumber);
 			console.log('answerArr: ', answerArr);
-		} else if (answerArr.length >= tryAmount) {
-			alert('Tries are over');
-			break;
 		}
+		
 	}
 };
 
