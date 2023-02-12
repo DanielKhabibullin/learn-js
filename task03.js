@@ -13,7 +13,7 @@ const generateArr3 = (a, m, n, str) => {
 		return generateArr3(a, n, m, str);
 	}
 	for (let i = 0; i < a; i++ ) {
-		let randomNum;
+		let randomNum = getRandomIntInclusive(m, n);
 		if (str === 'even') { 
 			while (!(randomNum % 2)) {
 				randomNum = getRandomIntInclusive(m, n);
@@ -27,4 +27,4 @@ const generateArr3 = (a, m, n, str) => {
 	}
 	return result3;
 };
-console.log(generateArr3(20, 100, -10, 'even'));
+console.log(generateArr3(20, 100, -10, 'odd'));
