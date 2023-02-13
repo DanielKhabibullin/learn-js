@@ -8,8 +8,6 @@ function getRandomIntInclusive(min, max) {
 	return number;
 };
 
-
-
 const startGame = () => {
 
 	let start = prompt('Enter first number ');
@@ -31,10 +29,6 @@ const startGame = () => {
 			console.log('userNumber: ', userNumber);
 			alert ('Come back again!');
 			break;
-		}
-		if (start === 50 && end === 100) {
-			tryAmount = 15;
-			continue;
 		}
 		if (answerArr.length >= tryAmount) {
 			alert('Tries are over');
