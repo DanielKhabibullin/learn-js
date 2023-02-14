@@ -6,18 +6,22 @@ const cart = {
 	{ title: 'bread', price: 10, qty: 1, }, 
 	{ title: 'butter', price: 20, qty: 1, }, 
 	],
-	totalPrice: 0,
-	count: 0,
-	getTotalPrice() {
-		return this.totalPrice;
+	totalPrice: {
+		get() {
+			return calculateItemPrice();
+		}
 	},
+	count: 0,
+	// getTotalPrice() {
+	// 	return this.totalPrice;
+	// },
 		increaseCount(number) {
 		//let [{ qty }] = this.items;
 		//return this.items.reduce((acc, e) => acc + e.qty, 0);
 		return this.count += number;
 	},
 	calculateItemPrice() {
-		return this.totalPrice = this.items.reduce((sum, { price, qty }) => sum + price * qty, 0);
+		return this.items.reduce((sum, { price, qty }) => sum + price * qty, 0);
 	// 	for (const key in this.items) {
 	// 		this.totalPrice += (this?.items[key].price * this?.items[key].qty);
 	// 	}
@@ -32,7 +36,7 @@ const cart = {
 		this.items.push(item);
 		this.increaseCount(qty);
 		this.calculateItemPrice();
-		this.getTotalPrice();
+		//this.getTotalPrice();
 	},
 	clear() {
 		// for (const key in this.items) {
@@ -43,8 +47,8 @@ const cart = {
 		this.items= [];
 	},
 	print() {
-		const cartStr = JSON.stringify(cart?.items);
-		console.log(`${cartStr}\n${cart.totalPrice}`);
+		const cartStr = JSON.stringify(this?.items);
+		console.log(`${cartStr}\n${this.calculateItemPrice()}`);
 	},
 }
 
@@ -52,17 +56,14 @@ const cart = {
 console.log(cart.calculateItemPrice());
 //console.log(cart.getTotalPrice());
 //cart.clear();
+// cart.increaseCount(5);
+// cart.add('sausage', 60, 1);
 // console.log(cart);
-cart.increaseCount(5);
-console.log(cart);
 
-cart.add('sausage', 60, 1);
-console.log(cart);
+// cart.add('sausage', 60, 1);
+// console.log(cart);
 
-cart.add('sausage', 60, 1);
-console.log(cart);
-
-cart.add('sausage', 60, 2);
-console.log(cart);
+// cart.add('sausage', 60, 2);
+// console.log(cart);
 
 cart.print();
