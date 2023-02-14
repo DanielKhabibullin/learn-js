@@ -12,13 +12,17 @@ const cart = {
 		return this.totalPrice;
 	},
 		increaseCount(number) {
+		//let [{ qty }] = this.items;
+		//return this.items.reduce((acc, e) => acc + e.qty, 0);
 		return this.count += number;
 	},
 	calculateItemPrice() {
-		for (const key in this.items) {
-			this.totalPrice += (this?.items[key].price * this?.items[key].qty);
-		}
-	return this.totalPrice;
+		let [{ price, qty }] = this.items;
+		return this.totalPrice = this.items.reduce((sum, e) => sum + e.price * e.qty, 0);
+	// 	for (const key in this.items) {
+	// 		this.totalPrice += (this?.items[key].price * this?.items[key].qty);
+	// 	}
+	// return this.totalPrice;
 	},
 	add(title, price, qty = 1) {
 		let item = { 
@@ -47,13 +51,20 @@ const cart = {
 }
 
 //console.log(cart.totalPrice);
-//console.log(cart.calculateItemPrice());
+console.log(cart.calculateItemPrice());
 //console.log(cart.getTotalPrice());
-//console.log(cart);
 //cart.clear();
 // console.log(cart);
-// cart.increaseCount(5);
-// cart.add('sausage', 60, 1);
-// console.log(cart);
+cart.increaseCount(5);
+console.log(cart);
+
+cart.add('sausage', 60, 1);
+console.log(cart);
+
+cart.add('sausage', 60, 1);
+console.log(cart);
+
+cart.add('sausage', 60, 2);
+console.log(cart);
 
 cart.print();
