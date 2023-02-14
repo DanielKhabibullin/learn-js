@@ -17,8 +17,7 @@ const cart = {
 		return this.count += number;
 	},
 	calculateItemPrice() {
-		let [{ price, qty }] = this.items;
-		return this.totalPrice = this.items.reduce((sum, e) => sum + e.price * e.qty, 0);
+		return this.totalPrice = this.items.reduce((sum, { price, qty }) => sum + price * qty, 0);
 	// 	for (const key in this.items) {
 	// 		this.totalPrice += (this?.items[key].price * this?.items[key].qty);
 	// 	}
@@ -45,7 +44,6 @@ const cart = {
 	},
 	print() {
 		const cartStr = JSON.stringify(cart?.items);
-		this.calculateItemPrice();
 		console.log(`${cartStr}\n${cart.totalPrice}`);
 	},
 }
