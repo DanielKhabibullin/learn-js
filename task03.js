@@ -23,14 +23,14 @@ const rectangle = {
 
 Object.defineProperty(rectangle, 'setHeight', {
 	set(b) {
-		if (parseInt(b) >= 0 || parseInt(b) <= 0) {
+		if (!isNaN(parseFloat(b)) && isFinite(b)) {
 			this._height = b;
 		} else {
 			console.warn('height is not a number');
 		}
 	},
 });
-rectangle.setHeight = '';
+rectangle.setHeight = '9';
 rectangle.setWidth = 'str';
 console.log(rectangle.getSquare);
 console.log(rectangle.getPerimeter);
