@@ -1,27 +1,36 @@
 'use strict';
 
 const rectangle = {
-	width: 5,
+	_width: 5,
 	set setWidth(a) {
-		this.width = a;
+		if (!isNaN(parseFloat(a)) && isFinite(a)) {
+			this._width = a;
+		} else {
+			console.warn('width is not a number');
+		}
 	},
-	// height: 5,
+	_height: 5,
 	// set setHeight(b) {
-	// 	this.height = b;
+	// 	this._height = b;
 	// },
 	get getSquare() {
-		return `${this.width * this.height}cm^2`;
+		return `${this._width * this._height}cm^2`;
 	},
 	get getPerimeter() {
-		return `${2 * (this.width + this.height)}cm`;
+		return `${2 * (this._width + this._height)}cm`;
 	},
 };
 
 Object.defineProperty(rectangle, 'setHeight', {
 	set(b) {
-		this.height = b;
+		if (parseInt(b) >= 0 || parseInt(b) <= 0) {
+			this._height = b;
+		} else {
+			console.warn('height is not a number');
+		}
 	},
 });
-rectangle.setHeight = 6;
+rectangle.setHeight = '';
+rectangle.setWidth = 'str';
 console.log(rectangle.getSquare);
 console.log(rectangle.getPerimeter);

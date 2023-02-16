@@ -29,11 +29,11 @@ const guessNumber = () => {
 		} else if (parseInt(userNumber) === number) {
 			alert('Good job');
 			return;
-		} else {
-			alert('Please, enter correct number');
 		}
+		return guessNumber();
+	} else {
+		alert('Please, enter correct number');
 		return guessNumber();
 	}
 };
-
 guessNumber();
