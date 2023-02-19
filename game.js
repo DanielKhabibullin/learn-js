@@ -26,7 +26,6 @@ Be careful next time.`);
 		_botChoice: 1, // 0 - even/ 1 - odd
 		set botChoice(evenOdd) {
 			this._botChoice = evenOdd;
-			console.log('_botChoice: ', this._botChoice);
 		},
 		_botBid: 1,
 		set botBid(bid) {
@@ -56,7 +55,6 @@ Note: computer will turn first.`);
 		userAnswer = userAnswer.slice(0, 1).toLowerCase();
 		const answers = [...FIGURES_ENG];
 		const computerAnswer = answers[getRandomIntInclusive(0, 2)].slice(0, 1);
-		console.log(userAnswer, computerAnswer);
 		if (userAnswer === computerAnswer) {
 			alert(`Tie! Let's play again.`);
 			return startRSP();
@@ -112,7 +110,6 @@ Note: You can't choose number more than ${marbleCount.bot}`);
 			}
 			marbleCount.playerBid = bid;
 			marbleCount.botChoice = getRandomIntInclusive(0, 1);
-			console.log('botChoice: 0 - even/ 1 - odd', marbleCount._botChoice);
 			if (marbleCount._botChoice === 0) {
 				alert(`Computer chose even.`);
 				if (marbleCount._playerBid % 2 === 0) {
@@ -131,7 +128,6 @@ Computer has ${marbleCount.bot} marble(s).`);
 alert(`You won game! Congratulations!`) : startMarble(playerResult);
 				}
 			} else {
-				console.log('botChoice: 0 - even/ 1 - odd', marbleCount._botChoice);
 				alert(`Computer chose odd`);
 				if (marbleCount._playerBid % 2 === 1) {
 					marbleCount.player -= marbleCount._playerBid;
@@ -152,7 +148,6 @@ alert(`You won game! Congratulations!`) : startMarble(playerResult);
 		} else { // bot turn
 			playerResult = 1;
 			marbleCount.botBid = getRandomIntInclusive(1, marbleCount.bot);
-			console.log('marbleCount.botBid: ', marbleCount._botBid);
 			const numberIsEven = confirm('Number is even?');
 			if (numberIsEven && (marbleCount._botBid % 2 === 0)) {
 				marbleCount.player += marbleCount._botBid;
