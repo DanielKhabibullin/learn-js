@@ -23,7 +23,7 @@ Be careful next time.`);
 				this._playerBid = 1;
 			}
 		},
-		_botChoice: 1,
+		_botChoice: 1, // 0 - even/ 1 - odd
 		set botChoice(evenOdd) {
 			this._botChoice = evenOdd;
 			console.log('_botChoice: ', this._botChoice);
@@ -92,98 +92,98 @@ You won. Your turn now.`);
 	};
 
 	const startMarble = function(playerResult) {
-		const bid = prompt(`Choose quantity of marble(s)
+		if (playerResult === 1) {
+			playerResult = 0;
+			const bid = prompt(`Choose quantity of marble(s)
 from 1 to ${marbleCount.player}.
 Note: You can't choose number more than ${marbleCount.bot}`);
-		if (bid === null) {
-			const endGame = confirm('Are you sure to exit?');
-			if (endGame) {
-				alert(`Come back again.`);
-				return;
-			} else {
+			if (bid === null) {
+				const endGame = confirm('Are you sure to exit?');
+				if (endGame) {
+					alert(`Come back again.`);
+					return;
+				} else {
+					return startMarble(playerResult);
+				}
+			}
+			if (bid > marbleCount.bot || bid <= 0 || bid > marbleCount.player) {
+				alert(`Please enter correct number.`);
 				return startMarble(playerResult);
 			}
-		}
-		if (bid > marbleCount.bot || bid <= 0 || bid > marbleCount.player) {
-			alert(`Please enter correct number.`);
-			return startMarble(playerResult);
-		} else {
 			marbleCount.playerBid = bid;
-			marbleCount.botBid = getRandomIntInclusive(1, marbleCount.bot);
-			if (playerResult === 1) {
-				playerResult = 0;
-				marbleCount.botChoice = getRandomIntInclusive(0, 1);
-				if (marbleCount._botChoice === 0) {
-					alert(`Computer chose even.`);
-					if (marbleCount._playerBid % 2 === 0) {
-						marbleCount.player -= marbleCount._playerBid;
-						marbleCount.bot += marbleCount._playerBid;
-						alert(`You lost. You have ${marbleCount.player} marble(s) left.
+			marbleCount.botChoice = getRandomIntInclusive(0, 1);
+			console.log('botChoice: 0 - even/ 1 - odd', marbleCount._botChoice);
+			if (marbleCount._botChoice === 0) {
+				alert(`Computer chose even.`);
+				if (marbleCount._playerBid % 2 === 0) {
+					marbleCount.player -= marbleCount._playerBid;
+					marbleCount.bot += marbleCount._playerBid;
+					alert(`You lost. You have ${marbleCount.player} marble(s) left.
 Computer has ${marbleCount.bot} marble(s).`);
-						(marbleCount.player <= 0) ? alert(`WASTED!`) :
-						startMarble(playerResult);
-					} else {
-						marbleCount.player += marbleCount._playerBid;
-						marbleCount.bot -= marbleCount._playerBid;
-						alert(`You won. You have ${marbleCount.player} marble(s).
-Computer has ${marbleCount.bot} marble(s).`);
-						(marbleCount.bot <= 0) ?
-alert(`You won game! Congratulations!`) : startMarble(playerResult);
-					}
+					(marbleCount.player <= 0) ? alert(`WASTED!`) :
+					startMarble(playerResult);
 				} else {
-					alert(`Computer chose odd`);
-					if (marbleCount._playerBid % 2 === 1) {
-						marbleCount.player -= marbleCount._playerBid;
-						marbleCount.bot += marbleCount._playerBid;
-						alert(`You lost. You have ${marbleCount.player} marble(s) left.
+					marbleCount.player += marbleCount._playerBid;
+					marbleCount.bot -= marbleCount._playerBid;
+					alert(`You won. You have ${marbleCount.player} marble(s).
 Computer has ${marbleCount.bot} marble(s).`);
-						(marbleCount.player <= 0) ? alert(`WASTED`) :
-						startMarble(playerResult);
-					} else {
-						marbleCount.player += marbleCount._playerBid;
-						marbleCount.bot -= marbleCount._playerBid;
-						alert(`You won. You have ${marbleCount.player} marble(s).
-Computer has ${marbleCount.bot} marble(s).`);
-						(marbleCount.bot === 0) ?
+					(marbleCount.bot <= 0) ?
 alert(`You won game! Congratulations!`) : startMarble(playerResult);
-					}
 				}
 			} else {
-				const numberIsEven = confirm('Number is even?');
-				playerResult = 1;
-				marbleCount.bot === 1 ? marbleCount.botChoice = 1 :
-				marbleCount.botChoice = getRandomIntInclusive(0, 1);
-				if (numberIsEven && marbleCount._botChoice === 1) {
-					marbleCount.player += marbleCount._playerBid;
-					marbleCount.bot -= marbleCount._playerBid;
-					alert(`You won. You have ${marbleCount.player} marble(s).
-Computer has ${marbleCount.bot} marble(s).`);
-					(marbleCount.bot <= 0) ? alert(`You won game! Congratulations!`) :
-					startMarble(playerResult);
-				} else if (!numberIsEven && marbleCount._botChoice === 0) {
-					marbleCount.player += marbleCount._playerBid;
-					marbleCount.bot -= marbleCount._playerBid;
-					alert(`You won. You have ${marbleCount.player} marble(s).
-Computer has ${marbleCount.bot} marble(s).`);
-					(marbleCount.bot <= 0) ? alert(`You won game! Congratulations!`) :
-					startMarble(playerResult);
-				} else {
+				console.log('botChoice: 0 - even/ 1 - odd', marbleCount._botChoice);
+				alert(`Computer chose odd`);
+				if (marbleCount._playerBid % 2 === 1) {
 					marbleCount.player -= marbleCount._playerBid;
 					marbleCount.bot += marbleCount._playerBid;
 					alert(`You lost. You have ${marbleCount.player} marble(s) left.
 Computer has ${marbleCount.bot} marble(s).`);
 					(marbleCount.player <= 0) ? alert(`WASTED`) :
 					startMarble(playerResult);
+				} else {
+					marbleCount.player += marbleCount._playerBid;
+					marbleCount.bot -= marbleCount._playerBid;
+					alert(`You won. You have ${marbleCount.player} marble(s).
+Computer has ${marbleCount.bot} marble(s).`);
+					(marbleCount.bot <= 0) ?
+alert(`You won game! Congratulations!`) : startMarble(playerResult);
 				}
 			}
-			if (marbleCount.player <= 0 || marbleCount.bot <= 0) {
-				const moreMarble = confirm('Wanna play more?');
-				if (!moreMarble) {
-					return alert(`Come back again.`);
-				} else {
-					marbleCount.newGame();
-					return startMarble(startRSP());
-				}
+		} else { // bot turn
+			playerResult = 1;
+			marbleCount.botBid = getRandomIntInclusive(1, marbleCount.bot);
+			console.log('marbleCount.botBid: ', marbleCount._botBid);
+			const numberIsEven = confirm('Number is even?');
+			if (numberIsEven && (marbleCount._botBid % 2 === 0)) {
+				marbleCount.player += marbleCount._botBid;
+				marbleCount.bot -= marbleCount._botBid;
+				alert(`You won. You have ${marbleCount.player} marble(s).
+Computer has ${marbleCount.bot} marble(s).`);
+				(marbleCount.bot <= 0) ? alert(`You won game! Congratulations!`) :
+				startMarble(playerResult);
+			} else if (!numberIsEven && (marbleCount._botBid % 2 !== 0)) {
+				marbleCount.player += marbleCount._botBid;
+				marbleCount.bot -= marbleCount._botBid;
+				alert(`You won. You have ${marbleCount.player} marble(s).
+Computer has ${marbleCount.bot} marble(s).`);
+				(marbleCount.bot <= 0) ? alert(`You won game! Congratulations!`) :
+				startMarble(playerResult);
+			} else {
+				marbleCount.player -= marbleCount._botBid;
+				marbleCount.bot += marbleCount._botBid;
+				alert(`You lost. You have ${marbleCount.player} marble(s) left.
+Computer has ${marbleCount.bot} marble(s).`);
+				(marbleCount.player <= 0) ? alert(`WASTED`) :
+				startMarble(playerResult);
+			}
+		}
+		if (marbleCount.player <= 0 || marbleCount.bot <= 0) {
+			const moreMarble = confirm('Wanna play more?');
+			if (!moreMarble) {
+				return;
+			} else {
+				marbleCount.newGame();
+				return startMarble(startRSP());
 			}
 		}
 	};
