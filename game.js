@@ -57,16 +57,13 @@ Note: computer will turn first.`);
 				return startRSP();
 			} else if (userAnswer === 'r' && computerAnswer === 's') {
 				playerResult = 1;
-				alert(`You chose ${FIGURES_ENG[0]}.\nComputer chose ${FIGURES_ENG[1]}.
-You won. Your turn now.`);
+				alert(`You won. Your turn now.`);
 			} else if (userAnswer === 's' && computerAnswer === 'p') {
 				playerResult = 1;
-				alert(`You chose ${FIGURES_ENG[1]}.\nComputer chose ${FIGURES_ENG[2]}.
-You won. Your turn now.`);
+				alert(`You won. Your turn now.`);
 			} else if (userAnswer === 'p' && computerAnswer === 'r') {
 				playerResult = 1;
-				alert(`You chose ${FIGURES_ENG[2]}.\nComputer chose ${FIGURES_ENG[0]}.
-You won. Your turn now.`);
+				alert(`You won. Your turn now.`);
 			} else {
 				playerResult = 0;
 				alert(`You lost. Computer turn now.`);
