@@ -51,33 +51,26 @@ Note: computer will turn first.`);
 		userAnswer = userAnswer.slice(0, 1).toLowerCase();
 		const answers = [...FIGURES_ENG];
 		const computerAnswer = answers[getRandomIntInclusive(0, 2)].slice(0, 1);
-		if (userAnswer === computerAnswer) {
-			alert(`Tie! Let's play again.`);
-			return startRSP();
-		} else if (userAnswer === 'r' && computerAnswer === 's') {
-			playerResult = 1;
-			alert(`You chose ${FIGURES_ENG[0]}.\nComputer chose ${FIGURES_ENG[1]}.
+		if (userAnswer === 'r' || userAnswer === 's' || userAnswer === 'p') {
+			if (userAnswer === computerAnswer) {
+				alert(`Tie! Let's play again.`);
+				return startRSP();
+			} else if (userAnswer === 'r' && computerAnswer === 's') {
+				playerResult = 1;
+				alert(`You chose ${FIGURES_ENG[0]}.\nComputer chose ${FIGURES_ENG[1]}.
 You won. Your turn now.`);
-		} else if (userAnswer === 'r' && computerAnswer === 'p') {
-			playerResult = 0;
-			alert(`You chose ${FIGURES_ENG[0]}.\nComputer chose ${FIGURES_ENG[2]}.
-You lost. Computer turn now.`);
-		} else if (userAnswer === 's' && computerAnswer === 'r') {
-			playerResult = 0;
-			alert(`You chose ${FIGURES_ENG[1]}.\nComputer chose ${FIGURES_ENG[0]}.
-You lost. Computer turn now.`);
-		} else if (userAnswer === 's' && computerAnswer === 'p') {
-			playerResult = 1;
-			alert(`You chose ${FIGURES_ENG[1]}.\nComputer chose ${FIGURES_ENG[2]}.
+			} else if (userAnswer === 's' && computerAnswer === 'p') {
+				playerResult = 1;
+				alert(`You chose ${FIGURES_ENG[1]}.\nComputer chose ${FIGURES_ENG[2]}.
 You won. Your turn now.`);
-		} else if (userAnswer === 'p' && computerAnswer === 's') {
-			playerResult = 0;
-			alert(`You chose ${FIGURES_ENG[2]}.\nComputer chose ${FIGURES_ENG[1]}.
-You lost. Computer turn now.`);
-		} else if (userAnswer === 'p' && computerAnswer === 'r') {
-			playerResult = 1;
-			alert(`You chose ${FIGURES_ENG[2]}.\nComputer chose ${FIGURES_ENG[0]}.
+			} else if (userAnswer === 'p' && computerAnswer === 'r') {
+				playerResult = 1;
+				alert(`You chose ${FIGURES_ENG[2]}.\nComputer chose ${FIGURES_ENG[0]}.
 You won. Your turn now.`);
+			} else {
+				playerResult = 0;
+				alert(`You lost. Computer turn now.`);
+			}
 		} else {
 			alert('Choose correctly');
 			return startRSP();
@@ -106,32 +99,28 @@ from 1 to ${marbleCount.player}.`);
 					marbleCount.playerBid = bid;
 					playerResult = 0;
 					marbleCount.botChoice = getRandomIntInclusive(0, 1);
-					if (marbleCount._botChoice === 0) {
+					if (marbleCount._botChoice === 0) { // 0 - even/ 1 - odd
 						alert(`Computer chose even.`);
-						if (marbleCount._playerBid % 2 === 0) {
-							marbleCount.player -= marbleCount._playerBid;
-							marbleCount.bot += marbleCount._playerBid;
-							alert(`You lost round.`);
-							return startMarble(playerResult);
-						} else {
-							marbleCount.player += marbleCount._playerBid;
-							marbleCount.bot -= marbleCount._playerBid;
-							alert(`You won round.`);
-							return startMarble(playerResult);
-						}
-					} else if (marbleCount._botChoice === 1) {
+					} else {
 						alert(`Computer chose odd`);
-						if (marbleCount._playerBid % 2 === 1) {
-							marbleCount.player -= marbleCount._playerBid;
-							marbleCount.bot += marbleCount._playerBid;
-							alert(`You lost round.`);
-							return startMarble(playerResult);
-						} else {
-							marbleCount.player += marbleCount._playerBid;
-							marbleCount.bot -= marbleCount._playerBid;
-							alert(`You won round.`);
-							return startMarble(playerResult);
-						}
+					}
+					if (marbleCount._botChoice === 0 &&
+						marbleCount._playerBid % 2 === 0) {
+						marbleCount.player -= marbleCount._playerBid;
+						marbleCount.bot += marbleCount._playerBid;
+						alert(`You lost round.`);
+						return startMarble(playerResult);
+					} else if (marbleCount._botChoice === 1 &&
+						marbleCount._playerBid % 2 === 1) {
+						marbleCount.player -= marbleCount._playerBid;
+						marbleCount.bot += marbleCount._playerBid;
+						alert(`You lost round.`);
+						return startMarble(playerResult);
+					} else {
+						marbleCount.player += marbleCount._playerBid;
+						marbleCount.bot -= marbleCount._playerBid;
+						alert(`You won round.`);
+						return startMarble(playerResult);
 					}
 				} else {
 					alert(`Please enter correct number.`);
@@ -158,17 +147,14 @@ from 1 to ${marbleCount.player}.`);
 					return startMarble(playerResult);
 				}
 			}
-		} else if (marbleCount.bot <= 0) {
+		}
+		if (marbleCount.bot <= 0) {
 			alert(`You won game! Congratulations!`);
-			const moreMarble = confirm('Wanna play more?');
-			if (!moreMarble) {
-				return;
-			} else {
-				marbleCount.newGame();
-				return startMarble(startRSP());
-			}
-		} else if (marbleCount.player <= 0) {
+		}
+		if (marbleCount.player <= 0) {
 			alert(`WASTED!`);
+		}
+		if (marbleCount.player <= 0 || marbleCount.bot <= 0) {
 			const moreMarble = confirm('Wanna play more?');
 			if (!moreMarble) {
 				return;
