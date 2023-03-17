@@ -5,17 +5,33 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Time</title>
+	<title>Typographer</title>
 	<link rel="stylesheet" href="css/main.css">
-	<script src="js/task01.js" defer></script>
-	<script src="js/task02.js" defer></script>
-	<script src="js/task03.js" defer></script>
-	<script src="js/task04.js" defer></script>
+	<script src="js/typorgaph.js" defer></script>
+
 </head>
 
 <body>
 	<div class="container">
-
+		<header class="header">
+			<h1 class="header__title">Typographer</h1>
+		</header>
+	
+		<main class="main">
+			<form class="typographer-form" id="typographer-form">
+				<label class="typographer-form__label" for="input-text">Enter your text:</label>
+				<textarea class="typographer-form__textarea" id="input-text" rows="10" cols="50"></textarea>
+				<button class="typographer-form__button" type="submit">Typograph!</button>
+			</form>
+	
+			<div class="typographer-output" id="typographer-output">
+				<p class="typographer-output__text"></p>
+			</div>
+		</main>
+	
+		<footer class="footer">
+			<p class="footer__text">Copyright &#169; Typographer</p>
+		</footer>
 	</div>
 </body>
 
