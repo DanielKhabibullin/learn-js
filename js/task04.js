@@ -4,7 +4,7 @@ const replaceUrls = url => {
 	const regexp = /(https?:\/\/)(www\.)?(\S+)/gi;
 	return url.replace(regexp, (match, p1, p2, p3) => {
 		const domain = p2 ? p3 : p2;
-		return `<a href="${p1}${domain}">${p1}${domain}</a>`;
+		return `<a href="${p1}${domain}">${domain}</a>`;
 	});
 };
 
