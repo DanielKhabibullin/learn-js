@@ -6,11 +6,11 @@ function Cart(items = []) {
 
 	this.calculateGoodsPrice = function() {
 		this.totalPrice = this.goods.reduce(function(total, item) {
-			return total + item.price;}, 0);
-		this.totalPrice = this.totalPrice - this.totalPrice * this.discount;
+			return total + item.price - (item.price * item.discount);}, 0);
 		this.increaseCount();
 		
 	};
+	
 	this.addGoods = function(item) {
 		this.goods.push(item);
 		this.increaseCount();
@@ -68,10 +68,12 @@ Object.setPrototypeOf(TechnicsGoods.prototype, Goods.prototype);
 TechnicsGoods.prototype.constructor = TechnicsGoods;
 
 const milk = new FoodGoods(2.5, 'Milk', 0, 120);
+console.log('milk: ', milk);
 const tShirt = new ClothingGoods(15, 'T-shirt', 0.1, 'cotton');
 const smartphone = new TechnicsGoods(600, 'Smartphone', 0.2, 'smartphone');
 
 const cart = new Cart();
+
 cart.addGoods(milk);
 cart.addGoods(tShirt);
 cart.addGoods(smartphone);
